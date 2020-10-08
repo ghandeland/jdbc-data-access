@@ -20,9 +20,11 @@ public class ProjectMemberDaoTest {
         dataSource.setUrl("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1");
 
         try (Connection connection = dataSource.getConnection()) {
-            connection.prepareStatement("create table project_members(id int auto_increment,  name varchar(60) not null, role varchar(60))").executeUpdate();
+            connection.prepareStatement("create table project_members(id int auto_increment,  name varchar(60) not null, role varchar(60))").execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        //id bigint auto_increment,
+
         return dataSource;
     }
 

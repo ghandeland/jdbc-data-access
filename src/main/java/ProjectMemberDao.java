@@ -11,11 +11,12 @@ import java.util.Scanner;
 
 public class ProjectMemberDao {
 
-    public List<ProjectMember> projectMemberList;
+    public List<String> projectMemberList;
     private DataSource dataSource;
 
     public ProjectMemberDao(DataSource dataSource) {
         this.dataSource = dataSource;
+        projectMemberList = new ArrayList<>();
     }
 
     public static void main(String[] args) throws SQLException {
@@ -86,5 +87,24 @@ public class ProjectMemberDao {
                 statement.executeUpdate();
             }
         }
+        projectMemberList.add(projectMemberName);
     }
+
+    public List<ProjectMember> list() throws SQLException {
+        try (Connection connection = dataSource.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("select * from project_members")) {
+                try (ResultSet rs = statement.executeQuery()) {
+                    List<ProjectMember> projectMembers = new ArrayList<>();
+
+                    while (rs.next()) {
+                        ProjectMember member = new ProjectMember();
+                        member.setId(rs.getInt("id"));
+                        member.setName(rs.getString("name"));
+                    }
+                    return projectMembers;
+                }
+            }
+        }
+    }
+
 }
