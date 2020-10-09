@@ -1,22 +1,23 @@
 import org.postgresql.ds.PGSimpleDataSource;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class ProjectMemberDao {
 
-    public List<String> projectMemberList;
+    public List<ProjectMember> projectMemberList;
     private DataSource dataSource;
 
     public ProjectMemberDao(DataSource dataSource) {
         this.dataSource = dataSource;
         projectMemberList = new ArrayList<>();
+    }
+
+    public List<ProjectMember> getProjectMemberList() {
+        return projectMemberList;
     }
 
     public static void main(String[] args) throws SQLException {
@@ -63,7 +64,7 @@ public class ProjectMemberDao {
         try (Connection connection = dataSource.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement("select * from project_members")) {
                 try (ResultSet resultSet = statement.executeQuery()) {
-                    List<ProjectMember> projectMemberList = new ArrayList<>();
+                    projectMemberList = new ArrayList<>();
 
                     while(resultSet.next()) {
                         ProjectMember projectMember = new ProjectMember();
@@ -80,31 +81,117 @@ public class ProjectMemberDao {
         }
     }
 
-    public void insert(String projectMemberName) throws SQLException {
-        try (Connection connection = dataSource.getConnection()) {
+    public void insert(String name) throws SQLException {
+        /*try (Connection connection = dataSource.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement("insert into project_members (name) " + "values (?)")) {
                 statement.setString(1, projectMemberName);
                 statement.executeUpdate();
             }
         }
-        projectMemberList.add(projectMemberName);
+        projectMemberList.add(new ProjectMember(name));*/
+        insert(new ProjectMember(name));
     }
 
-    public List<ProjectMember> list() throws SQLException {
+    public void insert(String name, String role) throws SQLException {
+        insert(new ProjectMember(name, role));
+    }
+
+    public void insert(ProjectMember projectMember) throws SQLException {
+        try (Connection connection = dataSource.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("insert into project_members (name, role) " + "values (?, ?)", Statement.RETURN_GENERATED_KEYS)) {
+                statement.setString(1, projectMember.getName());
+                statement.setString(2, projectMember.getRole());
+
+                statement.execute();
+
+                try(ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                    if(generatedKeys.next()) {
+                        projectMember.setId(generatedKeys.getInt(1));
+                    }
+                }
+            }
+        }
+        projectMemberList.add(projectMember);
+    }
+
+    public void printAll() throws SQLException {
+        System.out.println("ProjectMemberDao.printAll() ---");
         try (Connection connection = dataSource.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement("select * from project_members")) {
                 try (ResultSet rs = statement.executeQuery()) {
-                    List<ProjectMember> projectMembers = new ArrayList<>();
-
                     while (rs.next()) {
-                        ProjectMember member = new ProjectMember();
-                        member.setId(rs.getInt("id"));
-                        member.setName(rs.getString("name"));
+                        System.out.println(rs.getInt("id") + " - " + rs.getString("name") + " - " + rs.getString("role"));
+                        System.out.println("\r\r");
                     }
-                    return projectMembers;
                 }
             }
         }
     }
 
+
+    public List<String> listNames() throws SQLException {
+        try (Connection connection = dataSource.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("select * from project_members")) {
+                try (ResultSet rs = statement.executeQuery()) {
+                    List<String> projectNames = new ArrayList<>();
+
+                    while (rs.next()) {
+                        projectNames.add(rs.getString("name"));
+                    }
+                    return projectNames;
+                }
+            }
+        }
+    }
+
+    public List<String> listRoles() throws SQLException {
+        try (Connection connection = dataSource.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("select * from project_members")) {
+                try (ResultSet rs = statement.executeQuery()) {
+                    List<String> projectRoles = new ArrayList<>();
+
+                    while (rs.next()) {
+                        projectRoles.add(rs.getString("role"));
+                    }
+                    return projectRoles;
+                }
+            }
+        }
+    }
+
+    public int getUnusedId() throws SQLException {
+        try (Connection connection = dataSource.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("select * from project_members")) {
+                try (ResultSet rs = statement.executeQuery()) {
+                    int biggestId = Integer.MIN_VALUE;
+
+                    while(rs.next()) {
+                        int idInt = rs.getInt("id");
+                        if(idInt > biggestId) { biggestId = idInt; }
+                    }
+
+                    return biggestId + 1;
+                }
+            }
+
+        }
+    }
+
+    public ProjectMember retrieve(int id) throws SQLException {
+        try (Connection connection = dataSource.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("select * from project_members where id = ?")) {
+                statement.setInt(1, id);
+                try (ResultSet rs = statement.executeQuery()) {
+                    ProjectMember projectMember = new ProjectMember();
+
+                    while (rs.next()) {
+                        projectMember.setId(rs.getInt("id"));
+                        projectMember.setName(rs.getString("name"));
+                        projectMember.setRole(rs.getString("role"));
+                    }
+                    return projectMember;
+                }
+            }
+        }
+    }
 }

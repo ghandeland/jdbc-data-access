@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db7f679c-85a9-45cc-b40c-2213a3f4df5c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V001__create_table_products.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/logevents.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ProjectMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ProjectMember.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ProjectMemberDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ProjectMemberDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ProjectMemberDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ProjectMemberDaoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ProjectMember.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ProjectMember.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ProjectMemberDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ProjectMemberDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/ProjectMemberDaoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/ProjectMemberDaoTest.class" afterDir="false" />
     </list>
@@ -127,20 +132,6 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunManager" selected="JUnit.ProjectMemberDaoTest">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="oppgavesett-08" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ProjectMemberDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ProjectMemberDao" />
-      <module name="oppgavesett-08" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ProjectMemberDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="oppgavesett-08" />
       <option name="PACKAGE_NAME" value="" />
@@ -150,21 +141,41 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProjectMemberDaoTest.shouldListSavedMembers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProjectMemberDaoTest.shouldListSavedNameAndRole" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="oppgavesett-08" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ProjectMemberDaoTest" />
-      <option name="METHOD_NAME" value="shouldListSavedMembers" />
+      <option name="METHOD_NAME" value="shouldListSavedNameAndRole" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProjectMemberDaoTest.shouldListSavedProducts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProjectMemberDaoTest.shouldRetrieveMaxId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="oppgavesett-08" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ProjectMemberDaoTest" />
-      <option name="METHOD_NAME" value="shouldListSavedProducts" />
+      <option name="METHOD_NAME" value="shouldRetrieveMaxId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProjectMemberDaoTest.shouldRetrieveSingleMember" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="oppgavesett-08" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ProjectMemberDaoTest" />
+      <option name="METHOD_NAME" value="shouldRetrieveSingleMember" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProjectMemberDaoTest.shouldRetrieveSingleProduct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="oppgavesett-08" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ProjectMemberDaoTest" />
+      <option name="METHOD_NAME" value="shouldRetrieveSingleProduct" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -173,10 +184,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.ProjectMemberDaoTest" />
-        <item itemvalue="JUnit.ProjectMemberDaoTest.shouldListSavedMembers" />
-        <item itemvalue="JUnit.ProjectMemberDaoTest.shouldListSavedProducts" />
-        <item itemvalue="Application.ProjectMemberDao" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.ProjectMemberDaoTest.shouldRetrieveSingleMember" />
+        <item itemvalue="JUnit.ProjectMemberDaoTest.shouldRetrieveSingleProduct" />
+        <item itemvalue="JUnit.ProjectMemberDaoTest.shouldRetrieveMaxId" />
+        <item itemvalue="JUnit.ProjectMemberDaoTest.shouldListSavedNameAndRole" />
       </list>
     </recent_temporary>
   </component>
@@ -185,26 +196,7 @@
       <list>
         <serviceView>
           <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:postgres@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:postgres@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@2d41fa3b" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:project@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:project@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@31c332e7" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </treeState>
         </serviceView>
@@ -221,7 +213,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1602071654544</updated>
-      <workItem from="1602071655861" duration="20139000" />
+      <workItem from="1602071655861" duration="32992000" />
+      <workItem from="1602230567106" duration="2374000" />
     </task>
     <task id="LOCAL−00001" summary="First commit: Main test working on DAO-class and H2 test DB up and running">
       <created>1602155845760</created>
@@ -235,7 +228,13 @@
       <option name="presentableId" value="LOCAL−00002" />
       <updated>1602156045119</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL−00003" summary="Refactor">
+      <created>1602157352415</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1602157352415</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,65 +242,74 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit: Main test working on DAO-class and H2 test DB up and running" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit: Main test working on DAO-class and H2 test DB up and running" />
+    <MESSAGE value="Refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="179" key="#Project_Structure" timestamp="1602072954131">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="179" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1602072954131" />
+    <state x="552" y="179" key="#SQL_Dialects" timestamp="1602162126980">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="179" key="#SQL_Dialects/0.0.1920.1040@0.0.1920.1040" timestamp="1602162126980" />
     <state x="552" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602073736048">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602073736048" />
-    <state x="765" y="222" key="#com.intellij.ide.util.MemberChooser" timestamp="1602076291392">
+    <state x="765" y="222" key="#com.intellij.ide.util.MemberChooser" timestamp="1602231982386">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="222" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1602076291392" />
+    <state x="765" y="222" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1602231982386" />
     <state x="462" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1602078669709">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="462" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602078669709" />
-    <state x="468" y="117" key="CommitChangelistDialog2" timestamp="1602156044517">
+    <state x="468" y="117" key="CommitChangelistDialog2" timestamp="1602157351743">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="468" y="117" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1602156044517" />
-    <state width="1877" height="198" key="GridCell.Tab.0.bottom" timestamp="1602156850864">
+    <state x="468" y="117" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1602157351743" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1602160442419">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="198" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1602156850864" />
-    <state width="1877" height="198" key="GridCell.Tab.0.center" timestamp="1602156850863">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1602160442419" />
+    <state width="1877" height="198" key="GridCell.Tab.0.bottom" timestamp="1602232971692">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="198" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1602156850863" />
-    <state width="1877" height="198" key="GridCell.Tab.0.left" timestamp="1602156850863">
+    <state width="1877" height="198" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1602232971692" />
+    <state width="1877" height="198" key="GridCell.Tab.0.center" timestamp="1602232971692">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="198" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1602156850863" />
-    <state width="1877" height="198" key="GridCell.Tab.0.right" timestamp="1602156850863">
+    <state width="1877" height="198" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1602232971692" />
+    <state width="1877" height="198" key="GridCell.Tab.0.left" timestamp="1602232971692">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="198" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1602156850863" />
-    <state width="1877" height="246" key="GridCell.Tab.1.bottom" timestamp="1602080440854">
+    <state width="1877" height="198" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1602232971692" />
+    <state width="1877" height="198" key="GridCell.Tab.0.right" timestamp="1602232971692">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="246" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1602080440854" />
-    <state width="1877" height="246" key="GridCell.Tab.1.center" timestamp="1602080440854">
+    <state width="1877" height="198" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1602232971692" />
+    <state width="1877" height="246" key="GridCell.Tab.1.bottom" timestamp="1602232352712">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="246" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1602080440854" />
-    <state width="1877" height="246" key="GridCell.Tab.1.left" timestamp="1602080440854">
+    <state width="1877" height="246" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1602232352712" />
+    <state width="1877" height="246" key="GridCell.Tab.1.center" timestamp="1602232352711">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="246" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1602080440854" />
-    <state width="1877" height="246" key="GridCell.Tab.1.right" timestamp="1602080440854">
+    <state width="1877" height="246" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1602232352711" />
+    <state width="1877" height="246" key="GridCell.Tab.1.left" timestamp="1602232352711">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="246" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1602080440854" />
-    <state x="490" y="176" key="Maven.ArtifactSearchDialog" timestamp="1602081537537">
+    <state width="1877" height="246" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1602232352711" />
+    <state width="1877" height="246" key="GridCell.Tab.1.right" timestamp="1602232352711">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="490" y="176" key="Maven.ArtifactSearchDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602081537537" />
+    <state width="1877" height="246" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1602232352711" />
+    <state x="490" y="176" key="Maven.ArtifactSearchDialog" timestamp="1602160094647">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="490" y="176" key="Maven.ArtifactSearchDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602160094647" />
     <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1602156091567">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -310,6 +318,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1602155622297" />
+    <state x="0" y="0" width="1893" height="751" key="dock-window-1" timestamp="1602232158382">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="0" y="0" width="1893" height="751" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1602232158382" />
     <state x="690" y="287" key="extract.method.dialog" timestamp="1602084576945">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -318,6 +330,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="675" y="385" key="git4idea.rebase.GitRebaseDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602155640136" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1602169194174">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602169194174" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1602149749704">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

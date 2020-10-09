@@ -1,7 +1,17 @@
 public class ProjectMember {
+
     private int id;
     private String name;
     private String role;
+
+    public ProjectMember() {}
+
+    public ProjectMember(String name) { this.name = name; }
+
+    public ProjectMember(String name, String role) {
+        this.name = name;
+        this.role = role;
+    }
 
     public int getId() { return id; }
 
