@@ -1,4 +1,5 @@
 import jdk.jfr.StackTrace;
+import org.flywaydb.core.Flyway;
 import org.h2.jdbcx.JdbcDataSource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,17 +13,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ProjectMemberDaoTest {
     private ProjectMemberDao projectMemberDao;
+    private SampleData sd = new SampleData();
 
     public ProjectMemberDaoTest() throws SQLException { }
 
     private JdbcDataSource createTestDataSource() throws SQLException {
+
         JdbcDataSource dataSource = new JdbcDataSource();
         dataSource.setUrl("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1");
-
-        try (Connection connection = dataSource.getConnection()) {
-            connection.prepareStatement("create table project_members(id int auto_increment,  name varchar(60) not null, role varchar(60))").executeUpdate();
-        }
-        //id bigint auto_increment,
+        Flyway.configure().dataSource(dataSource).load().migrate();
         return dataSource;
     }
 
@@ -31,20 +30,43 @@ public class ProjectMemberDaoTest {
         JdbcDataSource ds = createTestDataSource();
         projectMemberDao = new ProjectMemberDao(ds);
 
-        String projectMemberName = samplePersonName();
+        String projectMemberName = sd.samplePersonName();
         System.out.println(projectMemberName);
 
         projectMemberDao.insert(projectMemberName);
         List<ProjectMember> pmList = projectMemberDao.listAll();
-        assertThat(projectMemberDao.listAll().contains(projectMemberName));
+        assertThat(projectMemberDao.listNames()).contains(projectMemberName);
+        projectMemberDao.printAll();
     }
 
+    @Test
+    void shouldListSavedNameAndRole() throws SQLException {
+        JdbcDataSource ds = createTestDataSource();
+        projectMemberDao = new ProjectMemberDao(ds);
 
+        String projectMemberName = sd.samplePersonName();
+        String projectMemberRole = sd.sampleRole();
 
-    private String samplePersonName() {
-        String[] options = {"John Green", "Willy Smith", "Johnny Greenwood", "Jonas Peteson"};
-        Random random = new Random();
-        return options[random.nextInt(options.length)];
+        projectMemberDao.insert(projectMemberName, projectMemberRole);
+        assertThat(projectMemberDao.listNames()).contains(projectMemberName);
+        assertThat(projectMemberDao.listRoles()).contains(projectMemberRole);
+
+        projectMemberDao.printAll();
     }
 
+    @Test
+    void shouldRetrieveSingleMember() throws SQLException {
+        JdbcDataSource ds = createTestDataSource();
+        projectMemberDao = new ProjectMemberDao(ds);
+
+        ProjectMember projectMember = sd.sampleProjectMember();
+        projectMemberDao.insert(projectMember);
+
+        projectMemberDao.printAll();
+
+        assertThat(projectMemberDao.retrieve(projectMember.getId()))
+                .hasNoNullFieldsOrProperties()
+                .usingRecursiveComparison()
+                .isEqualTo(projectMember);
+    }
 }
