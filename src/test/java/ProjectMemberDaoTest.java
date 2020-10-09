@@ -13,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ProjectMemberDaoTest {
     private ProjectMemberDao projectMemberDao;
+    private SampleData sd = new SampleData();
 
     public ProjectMemberDaoTest() throws SQLException { }
 
@@ -29,7 +30,7 @@ public class ProjectMemberDaoTest {
         JdbcDataSource ds = createTestDataSource();
         projectMemberDao = new ProjectMemberDao(ds);
 
-        String projectMemberName = samplePersonName();
+        String projectMemberName = sd.samplePersonName();
         System.out.println(projectMemberName);
 
         projectMemberDao.insert(projectMemberName);
@@ -43,8 +44,8 @@ public class ProjectMemberDaoTest {
         JdbcDataSource ds = createTestDataSource();
         projectMemberDao = new ProjectMemberDao(ds);
 
-        String projectMemberName = samplePersonName();
-        String projectMemberRole = sampleRole();
+        String projectMemberName = sd.samplePersonName();
+        String projectMemberRole = sd.sampleRole();
 
         projectMemberDao.insert(projectMemberName, projectMemberRole);
         assertThat(projectMemberDao.listNames()).contains(projectMemberName);
@@ -58,7 +59,7 @@ public class ProjectMemberDaoTest {
         JdbcDataSource ds = createTestDataSource();
         projectMemberDao = new ProjectMemberDao(ds);
 
-        ProjectMember projectMember = sampleProjectMember();
+        ProjectMember projectMember = sd.sampleProjectMember();
         projectMemberDao.insert(projectMember);
 
         projectMemberDao.printAll();
@@ -68,21 +69,4 @@ public class ProjectMemberDaoTest {
                 .usingRecursiveComparison()
                 .isEqualTo(projectMember);
     }
-
-    private ProjectMember sampleProjectMember() {
-        return new ProjectMember(samplePersonName(), sampleRole());
-    }
-
-    private String samplePersonName() {
-        String[] options = {"John Green", "Willy Smith", "Johnny Greenwood", "Jonas Peteson", "Gavin G.", "Taquisha H.", "Lasse S."};
-        Random random = new Random();
-        return options[random.nextInt(options.length)];
-    }
-
-    private String sampleRole() {
-        String[] options = {"Architect", "Designer", "Manager", "HR", "UX", "Developer", "PR", "Engineering"};
-        Random random = new Random();
-        return options[random.nextInt(options.length)];
-    }
-
 }

@@ -121,7 +121,6 @@ public class ProjectMemberDao {
                 try (ResultSet rs = statement.executeQuery()) {
                     while (rs.next()) {
                         System.out.println(rs.getInt("id") + " - " + rs.getString("name") + " - " + rs.getString("role"));
-                        System.out.println("\r\r");
                     }
                 }
             }
